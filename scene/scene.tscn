@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://crndbsmdau387"]
+
+[ext_resource type="Script" uid="uid://chbv6nbwqfet1" path="res://scene/net.gd" id="1_1d18f"]
+[ext_resource type="PackedScene" uid="uid://bh64ae3erkbmx" path="res://ui/hud.tscn" id="1_4gp4q"]
+
+[node name="scene" type="Node2D"]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://b6q7ehw4n6sul")
+spawn_path = NodePath("..")
+
+[node name="Com_Scene_Net" type="Node" parent="."]
+script = ExtResource("1_1d18f")
+metadata/_custom_type_script = "uid://chbv6nbwqfet1"
+
+[node name="HUD" parent="." instance=ExtResource("1_4gp4q")]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6q7ehw4n6sul"]
+
+[ext_resource type="Script" uid="uid://bvfp0wyf8dfxb" path="res://actor/actor.gd" id="1_1mi1q"]
+[ext_resource type="Texture2D" uid="uid://cworj7xih2a2d" path="res://icon.svg" id="1_pf8dd"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1mi1q"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+
+[node name="Actor" type="Node2D"]
+script = ExtResource("1_1mi1q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pf8dd")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_1mi1q")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -64.0
+offset_right = 22.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ID"
+horizontal_alignment = 1
+vertical_alignment = 1
