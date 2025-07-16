@@ -1,21 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bh64ae3erkbmx"]
+[gd_scene load_steps=2 format=3 uid="uid://bh64ae3erkbmx"]
 
-[sub_resource type="GDScript" id="GDScript_pv4sj"]
-script/source = "extends Button
-
-func _on_create_server_pressed() -> void:
-	print(\"button create\")
-	g_event.eve_scene_create_server.emit()
-"
-
-[sub_resource type="GDScript" id="GDScript_rbyyf"]
-script/source = "extends Button
-
-func _on_join_server_pressed() -> void:
-	g_event.eve_scene_join_server.emit()
-"
+[ext_resource type="Script" uid="uid://cqhahmttx7k1m" path="res://ui/hud.gd" id="1_rbyyf"]
 
 [node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_rbyyf")
 
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 33.0
@@ -27,12 +15,30 @@ metadata/_edit_group_ = true
 [node name="CreateBtn" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 text = "创建游戏"
-script = SubResource("GDScript_pv4sj")
 
 [node name="JoinBtn" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 text = "加入游戏"
-script = SubResource("GDScript_rbyyf")
 
-[connection signal="pressed" from="HBoxContainer/CreateBtn" to="HBoxContainer/CreateBtn" method="_on_create_server_pressed"]
-[connection signal="pressed" from="HBoxContainer/JoinBtn" to="HBoxContainer/JoinBtn" method="_on_join_server_pressed"]
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "房间信息"
+
+[node name="StartBtn" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -115.0
+offset_right = 36.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "开始游戏"
+
+[connection signal="pressed" from="HBoxContainer/CreateBtn" to="." method="_on_create_btn_pressed"]
+[connection signal="pressed" from="HBoxContainer/JoinBtn" to="." method="_on_join_btn_pressed"]
+[connection signal="pressed" from="StartBtn" to="." method="_on_start_btn_pressed"]

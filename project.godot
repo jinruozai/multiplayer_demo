@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="multiplayer_demo"
-run/main_scene="uid://crndbsmdau387"
+run/main_scene="uid://bh64ae3erkbmx"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-g_event="*res://global/event.gd"
+g_net="*res://global/lobby.gd"
 
 [input]
 

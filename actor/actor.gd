@@ -4,12 +4,11 @@ extends Node2D
 @export var turn_speed: float = 20.0 # 转向速度，数值越大转得越快
 @onready var label: Label = $Label
 
+const BULLET = preload("uid://dr67br7n7128t")
+
 func _ready() -> void:
-	set_multiplayer_authority(name.to_int())
 	position = Vector2i(randi() % 500, randi() % 500)
 	label.text=name
-	if is_multiplayer_authority():
-		play_effect.rpc(Color(randf(), randf(), randf()))
 
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority():
@@ -18,18 +17,24 @@ func _physics_process(delta: float) -> void:
 	if input.length() > 0:
 		# 计算目标角度
 		var target_angle = input.angle()+PI/2.0
-		# 平滑转向
-		rotation = lerp_angle(rotation, target_angle, turn_speed * delta)
-		position += input * move_speed
+		syn_pos_rot.rpc(position+input * move_speed,lerp_angle(rotation, target_angle, turn_speed * delta))
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority():
 		return
 	if event.is_action_pressed("move_sprint"):
-		play_effect.rpc(Color(randf(), randf(), randf()))
+		play_effect.rpc(Color(randf(), randf(), randf()),true)
 		prints("sprint:",multiplayer.get_unique_id())
 
 @rpc("authority","call_local")
-func play_effect(c:Color):
+func syn_pos_rot(pos:Vector2,rot:float):
+	position=pos
+	rotation=rot
+
+@rpc("authority","call_local")
+func play_effect(c:Color,shoot:bool=false):
 	prints("effect=====")
 	modulate = c
+	var bullet=BULLET.instantiate()
+	get_parent().add_child(bullet)
+	bullet.global_position=global_position

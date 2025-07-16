@@ -1,13 +1,6 @@
-class_name Com_Scene_Net
 extends Node
 
-@export var net_scene:Node=null
 var net_peer:ENetMultiplayerPeer;
-const ACTOR = preload("uid://b6q7ehw4n6sul")
-
-func _ready() -> void:
-	g_event.eve_scene_create_server.connect(create_server)
-	g_event.eve_scene_join_server.connect(join_server)
 
 func create_server():
 	prints("create server")
@@ -19,7 +12,6 @@ func create_server():
 		return
 	multiplayer.multiplayer_peer=net_peer
 	multiplayer.peer_connected.connect(_on_peer_connected)
-	add_player(multiplayer.get_unique_id())
 
 func join_server():
 	if not net_peer:
@@ -29,15 +21,8 @@ func join_server():
 
 func _on_peer_connected(id:int):
 	prints("peer connected:%d"%id)
-	add_player(id)
-	
-func add_player(id:int):
-	var scene=get_scene()
-	var actor=ACTOR.instantiate()
-	actor.name="%d"%id
-	scene.add_child(actor)
 
-func get_scene():
-	if net_scene:
-		return net_scene
-	return get_parent()
+@rpc("authority","call_local")
+func start_game():
+	prints("start")
+	get_tree().change_scene_to_file("res://scene/scene.tscn")

@@ -1,16 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://crndbsmdau387"]
+[gd_scene load_steps=2 format=3 uid="uid://crndbsmdau387"]
 
-[ext_resource type="Script" uid="uid://chbv6nbwqfet1" path="res://scene/net.gd" id="1_1d18f"]
-[ext_resource type="PackedScene" uid="uid://bh64ae3erkbmx" path="res://ui/hud.tscn" id="1_4gp4q"]
+[ext_resource type="Script" uid="uid://bpq2f7jlww5ij" path="res://scene/scene.gd" id="1_4gp4q"]
 
 [node name="scene" type="Node2D"]
+script = ExtResource("1_4gp4q")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://b6q7ehw4n6sul")
+_spawnable_scenes = PackedStringArray("uid://b6q7ehw4n6sul", "uid://dr67br7n7128t")
 spawn_path = NodePath("..")
 
-[node name="Com_Scene_Net" type="Node" parent="."]
-script = ExtResource("1_1d18f")
-metadata/_custom_type_script = "uid://chbv6nbwqfet1"
-
-[node name="HUD" parent="." instance=ExtResource("1_4gp4q")]
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 516.0
+offset_top = 278.0
+offset_right = 580.0
+offset_bottom = 301.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "游戏场景"

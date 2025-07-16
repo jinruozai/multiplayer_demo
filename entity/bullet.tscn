@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr67br7n7128t"]
+
+[sub_resource type="Gradient" id="Gradient_3nm12"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.3254902, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q53be"]
+gradient = SubResource("Gradient_3nm12")
+width = 32
+height = 32
+
+[node name="Bullet" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_q53be")

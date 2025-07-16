@@ -1,4 +1,0 @@
-extends Node
-
-signal eve_scene_create_server
-signal eve_scene_join_server
