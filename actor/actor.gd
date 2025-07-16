@@ -17,7 +17,8 @@ func _physics_process(delta: float) -> void:
 	if input.length() > 0:
 		# 计算目标角度
 		var target_angle = input.angle()+PI/2.0
-		syn_pos_rot.rpc(position+input * move_speed,lerp_angle(rotation, target_angle, turn_speed * delta))
+		syn_pos_rot(position+input * move_speed,lerp_angle(rotation, target_angle, turn_speed * delta))
+		#syn_pos_rot.rpc(position+input * move_speed,lerp_angle(rotation, target_angle, turn_speed * delta))
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority():
