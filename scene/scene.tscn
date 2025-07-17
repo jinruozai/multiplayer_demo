@@ -5,10 +5,6 @@
 [node name="scene" type="Node2D"]
 script = ExtResource("1_4gp4q")
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://b6q7ehw4n6sul", "uid://dr67br7n7128t")
-spawn_path = NodePath("..")
-
 [node name="Label" type="Label" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
